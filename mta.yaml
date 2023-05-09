@@ -64,19 +64,6 @@ resources:
       config:
         xsappname: risk-management-${org}-${space}
         tenant-mode: dedicated
-        oauth2-configuration: # <-- add this
-          redirect-uris: 
-          # example - https://risk-management-approuter.cfapps.us10-001.hana.ondemand.com/login/callback
-          - https:///login/callback
-  - name: risk-management-uaa
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: risk-management-${org}-${space}
-        tenant-mode: dedicated
         role-collections:
         - name: 'RiskManager-${space}'
           description: Manage Risks
@@ -86,3 +73,7 @@ resources:
           description: View Risks
           role-template-references:
           - $XSAPPNAME.RiskViewer
+        oauth2-configuration: # <-- add this
+          redirect-uris: 
+          # example - https://risk-management-approuter.cfapps.us10-001.hana.ondemand.com/login/callback
+          - https://ef3ce9b7trial-dev-risk-management.cfapps.us10-001.hana.ondemand.com/login/callback
